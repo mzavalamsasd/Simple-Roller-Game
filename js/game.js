@@ -48,7 +48,7 @@ Game.update = function () {
 
   if (Player.hasWon()) {
     Game.mode = "won";
-    Game.showMessage("You made it. Press R to play again.");
+    Game.showMessage("You Actullay Survived,Good Job!, Push R To Restart The Level");
     return;
   }
 };

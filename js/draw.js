@@ -86,7 +86,7 @@ Draw.block = function (x, y, size) {
 // A spike: a solid black triangle pointing up.
 Draw.spike = function (x, y, size) {
   var ctx = Draw.ctx;
-  ctx.fillStyle = "#000000";
+  ctx.fillStyle = "#33a5ab";
   ctx.beginPath();
   ctx.moveTo(x, y + size);
   ctx.lineTo(x + size / 2, y);
@@ -98,12 +98,12 @@ Draw.spike = function (x, y, size) {
 // The finish: a black pole with a flag on it.
 Draw.finish = function (x, y, size) {
   var ctx = Draw.ctx;
-  ctx.fillStyle = "#000000";
+  ctx.fillStyle = "#6f68ef";
   ctx.fillRect(x + size / 2 - 2, y, 4, size);
   ctx.beginPath();
   ctx.moveTo(x + size / 2 + 2, y + 4);
   ctx.lineTo(x + size - 4,     y + 12);
-  ctx.lineTo(x + size / 2 + 2, y + 20);
+  ctx.lineTo(x + size / 4 + 2, y + 20);
   ctx.closePath();
   ctx.fill();
 };
@@ -117,8 +117,8 @@ Draw.player = function () {
   var centerY = Player.y + CONFIG.PLAYER_SIZE / 2;
 
   // the circle
-  ctx.fillStyle = "#ffffff";
-  ctx.strokeStyle = "#000000";
+  ctx.fillStyle = "#3aa7d5";
+  ctx.strokeStyle = "#8abfeb";
   ctx.lineWidth = CONFIG.LINE_WIDTH;
   ctx.beginPath();
   ctx.arc(centerX, centerY, r, 0, Math.PI * 2);
@@ -129,7 +129,7 @@ Draw.player = function () {
   var dotX = centerX + Math.cos(Player.angle) * r * CONFIG.DOT_DISTANCE;
   var dotY = centerY + Math.sin(Player.angle) * r * CONFIG.DOT_DISTANCE;
 
-  ctx.fillStyle = "#000000";
+  ctx.fillStyle = "#3db1e2a5";
   ctx.beginPath();
   ctx.arc(dotX, dotY, 4, 0, Math.PI * 2);
   ctx.fill();
