@@ -4,8 +4,8 @@
    ===================================================================== */
 
 body {
-  background: #5e4fd2;
-  color: #286b72;
+  background: #45908a;
+  color: #00e4fd;
   font-family: 'Courier New', Courier, monospace;
   text-align: center;
   margin: 24px;
@@ -18,7 +18,7 @@ h1 {
 }
 
 canvas {
-  border: 3px solid #124757;
+  border: 3px solid #6adcff;
   background: #cddaeb;
   display: block;
   margin: 0 auto;
