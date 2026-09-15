@@ -19,7 +19,7 @@ var CONFIG = {
 
   // --- how the player moves -------------------------------------------
   MOVE_SPEED: 8,      // pixels per frame left and right
-  JUMP_POWER: 100,     // how hard the jump pushes UP. bigger = higher
+  JUMP_POWER: 20,     // how hard the jump pushes UP. bigger = higher
   GRAVITY: 0.5,       // how hard the world pulls DOWN. bigger = heavier
   MAX_FALL: 19,       // fastest the player is allowed to fall
 
@@ -29,7 +29,7 @@ var CONFIG = {
 
   // --- drawing --------------------------------------------------------
   LINE_WIDTH: 3,      // thickness of every black outline
-  DOT_DISTANCE: 0.55, // how far the off-center dot sits from the middle
+  DOT_DISTANCE: 0.1, // how far the off-center dot sits from the middle
                       // 0 = dead center, 1 = right on the edge
 
   // --- rules ----------------------------------------------------------
