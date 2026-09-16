@@ -43,7 +43,9 @@ Draw.everything = function () {
   ctx.translate(-Draw.cameraX, 0);
 
   Draw.world();
+  Crumble.draw();  
   Draw.player();
+
 
   ctx.restore();
 };
