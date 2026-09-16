@@ -1,35 +1,43 @@
-/* =====================================================================
-   style.css  --  how the PAGE looks. Not how the GAME looks.
-   The game is drawn in js/draw.js. This file is just the page around it.
-   ===================================================================== */
-
-body {
-  background: #45908a;
-  color: #00e4fd;
-  font-family: 'Courier New', Courier, monospace;
-  text-align: center;
-  margin: 24px;
-}
-
-h1 {
-  letter-spacing: 6px;
-  font-size: 24px;
-  margin-bottom: 16px;
-}
-
-canvas {
-  border: 3px solid #6adcff;
-  background: #cddaeb;
-  display: block;
-  margin: 0 auto;
-}
-
-#message {
-  font-size: 18px;
-  height: 24px;
-  margin-top: 16px;
-}
-
-.controls {
-  font-size: 13px;
-}
+/* =====================================================================  
+   style.css  --  how the PAGE looks. Not how the GAME looks.  
+   The game is drawn in js/draw.js. This file is just the page around it.  
+   ===================================================================== */  
+  
+body {  
+  background: #0d1220;  
+  color: #00e4fd;  
+  font-family: 'Courier New', Courier, monospace;  
+  text-align: center;  
+  margin: 24px;  
+}  
+  
+h1 {  
+  letter-spacing: 8px;  
+  font-size: 28px;  
+  text-transform: uppercase;  
+  color: #6adcff;  
+  text-shadow: 0 0 12px #00e4fd;  
+  margin-bottom: 16px;  
+}  
+  
+canvas {  
+  border: 3px solid #00e4fd;  
+  border-radius: 8px;  
+  box-shadow: 0 0 24px rgba(0, 228, 253, 0.35);  
+  background: #cddaeb;  
+  display: block;  
+  margin: 0 auto;  
+}  
+  
+#message {  
+  font-size: 18px;  
+  height: 24px;  
+  margin-top: 16px;  
+  color: #ffd166;  
+  text-shadow: 0 0 8px rgba(255, 209, 102, 0.5);  
+}  
+  
+.controls {  
+  font-size: 13px;  
+  color: #8a93b2;  
+}  
