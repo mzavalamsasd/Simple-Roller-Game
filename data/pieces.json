@@ -1,209 +1,133 @@
-{
-  "_comment": "Every piece is 8 columns wide and 10 rows tall. Draw it like a picture. '.' is empty air, '#' is a solid block, '^' is a spike, 'S' is where the player starts, 'F' is the finish. To invent a new piece, copy one of these, rename it, and change the picture. Then use its name in data/levels.json.",
-
-  "start": [
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "..S.....",
-    "########",
-    "########"
-  ],
-
-  "flat": [
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "########",
-    "########"
-  ],
-
-  "gap": [
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "###..###",
-    "###..###"
-  ],
-
-  "spikes": [
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "...^^...",
-    "########",
-    "########"
-  ],
-
-  "step": [
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    ".....###",
-    ".....###",
-    "########",
-    "########"
-  ],
-
-
-   "platform": [
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "..####..",
-    "........",
-    "########",
-    "########"
-  ],
-
-  "stairs": [
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "......##",
-    "....####",
-    "..######",
-    "########",
-    "########"
-  ],
-
-  "spikepit": [
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "..####..",
-    "..^^^^..",
-    "########",
-    "########"
-  ],
-   
-  "spikepit": [
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "..####..",
-    "..^^^^..",
-    "########",
-    "########"
-  ],
-  // =====================================================================  
-// crumble.js -- platforms that shake, fall away, and come back  
-// =====================================================================  
-var Crumble = {  
-  blocks: []  
-};  
+{  
+  "_comment": "Every piece is 8 columns wide and 10 rows tall. Draw it like a picture. '.' is empty air, '#' is a solid block, '^' is a spike, 'S' is where the player starts, 'F' is the finish, 'c' is a crumbling platform. To invent a new piece, copy one of these, rename it, and change the picture. Then use its name in data/levels.json.",  
   
-// find every "c" in the level and turn it into a tracked block  
-Crumble.reset = function () {  
-  Crumble.blocks = [];  
-  for (var row = 0; row < CONFIG.ROWS; row++) {  
-    for (var col = 0; col < Level.cols; col++) {  
-      if (Level.charAt(col, row) === "c") {  
-        Crumble.blocks.push({ col: col, row: row, state: "solid", timer: 0 });  
-        Crumble.setTile(col, row, "#");  
-      }  
-    }  
-  }  
-};  
+  "start": [  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "..S.....",  
+    "########",  
+    "########"  
+  ],  
   
-// Level.grid holds strings, which cannot be changed in place,  
-// so we rebuild the whole row with one character swapped  
-Crumble.setTile = function (col, row, character) {  
-  var line = Level.grid[row];  
-  Level.grid[row] = line.substring(0, col) + character + line.substring(col + 1);  
-};  
+  "flat": [  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "########",  
+    "########"  
+  ],  
   
-// true if the player's box overlaps any crumbling block tile  
-Crumble.playerOnAny = function () {  
-  var size = CONFIG.PLAYER_SIZE;  
-  var squares = Collide.squaresUnder(Player.x, Player.y, size, size);  
-  for (var i = 0; i < Crumble.blocks.length; i++) {  
-    if (Crumble.touching(squares, Crumble.blocks[i])) {  
-      return true;  
-    }  
-  }  
-  return false;  
-};  
+  "gap": [  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "###..###",  
+    "###..###"  
+  ],  
   
-Crumble.touching = function (squares, block) {  
-  for (var i = 0; i < squares.length; i++) {  
-    if (squares[i].col === block.col && squares[i].row === block.row) {  
-      return true;  
-    }  
-  }  
-  return false;  
-};  
+  "spikes": [  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "...^^...",  
+    "########",  
+    "########"  
+  ],  
   
-// the state machine: solid -> shaking -> gone -> solid  
-Crumble.update = function () {  
-  var feet = Collide.squaresUnder(Player.x,  
-    Player.y + CONFIG.PLAYER_SIZE,  
-    CONFIG.PLAYER_SIZE, 2);  
-  var playerOffAll = !Crumble.playerOnAny();  
+  "step": [  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    ".....###",  
+    ".....###",  
+    "########",  
+    "########"  
+  ],  
   
-  for (var i = 0; i < Crumble.blocks.length; i++) {  
-    var block = Crumble.blocks[i];  
+  "platform": [  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "..####..",  
+    "........",  
+    "########",  
+    "########"  
+  ],  
   
-    if (block.state === "solid") {  
-      // standing on it starts the countdown  
-      if (Crumble.touching(feet, block)) {  
-        block.state = "shaking";  
-        block.timer = CONFIG.CRUMBLE_SHAKE_FRAMES;  
-      }  
-    } else if (block.state === "shaking") {  
-      block.timer = block.timer - 1;  
-      if (block.timer <= 0) {  
-        block.state = "gone";  
-        Crumble.setTile(block.col, block.row, ".");  
-      }  
-    } else if (block.state === "gone") {  
-      // come back once the player is off ALL crumbling platforms  
-      if (playerOffAll)
-
-
-
-  "finish": [
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "........",
-    "....F...",
-    "....F...",
-    "########",
-    "########"
-  ]
-}
+  "stairs": [  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "......##",  
+    "....####",  
+    "..######",  
+    "########",  
+    "########"  
+  ],  
+  
+  "spikepit": [  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "..####..",  
+    "..^^^^..",  
+    "########",  
+    "########"  
+  ],  
+  
+  "crumble": [  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "..cccc..",  
+    "........",  
+    "........",  
+    "###..###",  
+    "###..###"  
+  ],  
+  
+  "finish": [  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "........",  
+    "....F...",  
+    "....F...",  
+    "########",  
+    "########"  
+  ]  
+}  
