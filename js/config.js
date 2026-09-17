@@ -10,9 +10,9 @@ var CONFIG = {
   CANVAS_H: 400,  
   
   // --- how the player moves -------------------------------------------  
-  MOVE_SPEED: 4,      // pixels per frame left and right  
-  JUMP_POWER: 15,     // how hard the jump pushes UP. bigger = higher  
-  GRAVITY: 0.8,       // how hard the world pulls DOWN. bigger = heavier  
+  MOVE_SPEED: 5,      // pixels per frame left and right. fast = committed  
+  JUMP_POWER: 14,     // CHANGED: 15 -> 14. slightly lower jumps = thinner margins  
+  GRAVITY: 1.0,       // CHANGED: 0.9 -> 1.0. falls fast, air time feels urgent  
   MAX_FALL: 16,       // fastest the player is allowed to fall  
   
   // --- the player's size ----------------------------------------------  
@@ -24,7 +24,7 @@ var CONFIG = {
   DOT_DISTANCE: 0.55, // how far the off-center dot sits from the middle  
   
   // --- crumble mechanic ------------------------------------------------  
-  CRUMBLE_SHAKE_FRAMES: 120, // about two seconds before the platform falls  
+  CRUMBLE_SHAKE_FRAMES: 75, // CHANGED: 90 -> 75. 1.25 seconds. barely time to react  
   
   // --- rules ----------------------------------------------------------  
   START_LEVEL: 0      // which level in data/levels.json to load first  
